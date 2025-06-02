@@ -1,0 +1,11 @@
+{
+  "leave_phone": "Để lại số điện thoại...",
+  "send": "GỬI",
+  "please_enter_phone": "Vui lòng nhập số điện thoại.",
+  "invalid_phone": "Số điện thoại không hợp lệ",
+  "phone_requirements": "Vui lòng nhập 10 chữ số và bắt đầu bằng số 0.",
+  "request_sent": "Yêu cầu đã được gửi",
+  "we_will_contact": "Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
+  "error_occurred": "Có lỗi xảy ra.",
+  "please_try_again": "Vui lòng thử lại sau."
+}

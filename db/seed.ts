@@ -8,12 +8,12 @@ async function seed() {
     // Seed services
     const services = [
       {
-        title: "Cung Cấp Giống Cây Trồng",
+        title: "Tư vấn Kỹ thuật và Quy trình Sản xuất",
         description: "Cung cấp các loại giống cây trồng chất lượng cao, đảm bảo năng suất và khả năng chống chịu với điều kiện thời tiết khắc nghiệt.",
         imageUrl: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500"
       },
       {
-        title: "Tư Vấn Kỹ Thuật",
+        title: "Tư vấn An toàn Thực phẩm và Hệ thống Quản lý Chất lượng",
         description: "Đội ngũ chuyên gia giàu kinh nghiệm của chúng tôi sẽ tư vấn, hỗ trợ kỹ thuật trong suốt quá trình canh tác.",
         imageUrl: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500"
       },
@@ -43,21 +43,21 @@ async function seed() {
     // Seed testimonials
     const testimonials = [
       {
-        name: "Nguyễn Văn A",
-        position: "Chủ trang trại tại Lâm Đồng",
-        content: "Tôi đã sử dụng dịch vụ tư vấn kỹ thuật của Cây Nhà Lá Vườn cho trang trại của mình. Các chuyên gia rất nhiệt tình và giàu kinh nghiệm, giúp năng suất của trang trại tăng đáng kể.",
+        name: "Nguyễn Văn Vĩnh",
+        position: "Chủ hộ kinh doanh bánh tráng phơi sương",
+        content: "Tôi đã sử dụng dịch vụ tư vấn kỹ thuật và chuyển giao công nghệ của CSF cho cơ sở sản xuất thực phẩm của mình. Đội ngũ chuyên gia rất chuyên nghiệp và tận tâm, giúp quy trình sản xuất được tối ưu hóa rõ rệt, chất lượng sản phẩm cũng được nâng cao đáng kể.",
         rating: 5
       },
       {
-        name: "Trần Thị B",
-        position: "Khách hàng tại TP.HCM",
-        content: "Các sản phẩm nông sản của Cây Nhà Lá Vườn luôn tươi ngon và an toàn. Gia đình tôi rất an tâm khi sử dụng và sẽ tiếp tục ủng hộ công ty trong tương lai.",
+        name: "Trần Thị Mậu Thanh",
+        position: "Chủ Doanh nghiệp Sản Xuất Hạt điều",
+        content: "Tôi đã sử dụng dịch vụ tư vấn và chuyển giao công nghệ của CSF cho doanh nghiệp sản xuất thực phẩm của mình. Đội ngũ chuyên gia rất chuyên nghiệp và am hiểu sâu sắc, giúp chúng tôi tối ưu hóa quy trình và nâng cao chất lượng sản phẩm. Sản phẩm sau khi áp dụng công nghệ mới đã được thị trường đón nhận rất tích cực.",
         rating: 5
       },
       {
-        name: "Lê Văn C",
+        name: "Lê Văn Quý",
         position: "Hợp tác xã Nông nghiệp Sạch",
-        content: "Giống cây trồng của Cây Nhà Lá Vườn có tỷ lệ nảy mầm cao và sinh trưởng tốt. Đội ngũ hỗ trợ kỹ thuật luôn sẵn sàng giải đáp mọi thắc mắc của chúng tôi.",
+        content: "Công ty CSF đã giúp chúng tôi phát triển sản phẩm thực phẩm mới, từ việc nghiên cứu công thức đến thử nghiệm sản xuất. Chúng tôi rất ấn tượng với sự tận tâm và kinh nghiệm của đội ngũ chuyên gia. Đây là đối tác chiến lược quan trọng cho sự phát triển của chúng tôi.",
         rating: 4
       }
     ];

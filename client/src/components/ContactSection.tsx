@@ -2,8 +2,6 @@ import { z } from "zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
 import {
@@ -25,18 +23,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslation } from "react-i18next";
 
-const contactFormSchema = z.object({
-  name: z.string().min(2, "Vui lòng nhập họ tên").max(100),
-  email: z.string().email("Vui lòng nhập email hợp lệ"),
-  phone: z.string().min(10, "Vui lòng nhập số điện thoại hợp lệ"),
-  subject: z.string().min(1, "Vui lòng chọn chủ đề"),
-  message: z.string().min(10, "Nội dung quá ngắn").max(1000),
+
+
+export default function ContactSection() {
+  const { t } = useTranslation('contactSection');
+  const contactFormSchema = z.object({
+  name: z.string().min(2, t('error_full_name_required')).max(100),
+  email: z.string().email(t('error_invalid_email')),
+  phone: z.string().min(10, t('error_invalid_phone')),
+  subject: z.string().min(1, t('error_subject_required')),
+  message: z.string().min(10, t('error_message_too_short')).max(1000),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
-
-export default function ContactSection() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -51,53 +52,69 @@ export default function ContactSection() {
     },
   });
 
-  const contactMutation = useMutation({
-    mutationFn: (data: ContactFormValues) => {
-      return apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
+  async function onSubmit(data: ContactFormValues) {
+  setIsSubmitting(true);
+
+  const formData = new FormData();
+  formData.append("name", data.name);
+  formData.append("email", data.email);
+  formData.append("phone", data.phone);
+  formData.append("subject", data.subject);
+  formData.append("message", data.message);
+
+  try {
+    const res = await fetch("https://formsubmit.co/ajax/thanhduydang97@gmail.com", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: formData,
+    });
+
+    const result = await res.json();
+
+    if (res.ok) {
       toast({
-        title: "Yêu cầu đã được gửi",
-        description: "Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
+        title: t('request_sent'),
+        description: t('we_will_contact'),
         variant: "default",
       });
       form.reset();
-    },
-    onError: (error) => {
-      toast({
-        title: "Có lỗi xảy ra",
-        description: error.message || "Vui lòng thử lại sau.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  function onSubmit(data: ContactFormValues) {
-    setIsSubmitting(true);
-    contactMutation.mutate(data);
-    setIsSubmitting(false);
+    } else {
+      throw new Error(result.message || t('error_occurred'));
+    }
+  } catch (error: any) {
+    toast({
+      title: t('error_occurred'),
+      description: error.message || t('please_try_again'),
+      variant: "destructive",
+    });
   }
+
+  setIsSubmitting(false);
+}
+
 
   const contactInfo = [
     {
       icon: "fas fa-map-marker-alt",
-      title: "Địa Chỉ",
-      details: ["123 Đường Nông Nghiệp, Phường Tân Phú, Quận 9, TP. Hồ Chí Minh"]
+      title: "address",
+      details: [t('address_detail')]
     },
     {
       icon: "fas fa-phone-alt",
-      title: "Điện Thoại",
-      details: ["(+84) 28 1234 5678", "(+84) 90 1234 567"]
+      title: "phone",
+      details: ["0395782954"]
     },
     {
       icon: "fas fa-envelope",
-      title: "Email",
-      details: ["info@caynhilavuon.com", "support@caynhilavuon.com"]
+      title: "email",
+      details: ["thanhduydang97@gmail.com"]
     },
     {
       icon: "fas fa-clock",
-      title: "Giờ Làm Việc",
-      details: ["Thứ Hai - Thứ Sáu: 8:00 - 17:30", "Thứ Bảy: 8:00 - 12:00"]
+      title: "working_hours",
+      details: [t('working_hours_weekdays'), t('working_hours_saturday')]
     }
   ];
 
@@ -105,10 +122,10 @@ export default function ContactSection() {
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold font-heading text-gray-900 mb-4">Liên Hệ Với Chúng Tôi</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-heading text-gray-900 mb-4">{t('contact_us')}</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="max-w-3xl mx-auto text-lg text-gray-600">
-            Hãy liên hệ với chúng tôi để được tư vấn và hỗ trợ về các sản phẩm, dịch vụ của Cây Nhà Lá Vườn.
+            {t('contact_us_desc')}
           </p>
         </div>
         
@@ -116,7 +133,7 @@ export default function ContactSection() {
           <div className="lg:col-span-2">
             <Card className="bg-gray-50 p-6 rounded-lg shadow-md h-full">
               <CardContent className="p-0">
-                <h3 className="text-xl font-bold font-heading text-gray-900 mb-6">Thông Tin Liên Hệ</h3>
+                <h3 className="text-xl font-bold font-heading text-gray-900 mb-6">{t('contact_info')}</h3>
                 
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
@@ -125,7 +142,7 @@ export default function ContactSection() {
                         <i className={info.icon}></i>
                       </div>
                       <div className="ml-4">
-                        <h4 className="text-lg font-semibold text-gray-900">{info.title}</h4>
+                        <h4 className="text-lg font-semibold text-gray-900">{t(info.title)}</h4>
                         {info.details.map((detail, idx) => (
                           <p key={idx} className="text-gray-600">{detail}</p>
                         ))}
@@ -135,7 +152,7 @@ export default function ContactSection() {
                 </div>
                 
                 <div className="mt-8">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">Kết Nối Với Chúng Tôi</h4>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-4">{t('connect_with_us')}</h4>
                   <div className="flex space-x-4">
                     <a href="#" className="h-10 w-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-dark transition-colors duration-300">
                       <i className="fab fa-facebook-f"></i>
@@ -158,7 +175,7 @@ export default function ContactSection() {
           <div className="lg:col-span-3">
             <Card className="bg-white p-6 rounded-lg shadow-md">
               <CardContent className="p-0">
-                <h3 className="text-xl font-bold font-heading text-gray-900 mb-6">Gửi Yêu Cầu Tư Vấn</h3>
+                <h3 className="text-xl font-bold font-heading text-gray-900 mb-6">{t('send_consulting_request')}</h3>
                 
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -168,10 +185,10 @@ export default function ContactSection() {
                         name="name"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Họ và Tên</FormLabel>
+                            <FormLabel>{t('full_name')}</FormLabel>
                             <FormControl>
                               <Input 
-                                placeholder="Nhập họ và tên của bạn" 
+                                placeholder={t('enter_full_name')}
                                 {...field} 
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                               />
@@ -190,7 +207,7 @@ export default function ContactSection() {
                             <FormControl>
                               <Input 
                                 type="email" 
-                                placeholder="Nhập địa chỉ email của bạn" 
+                                placeholder={t('enter_email')}
                                 {...field}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                               />
@@ -206,11 +223,11 @@ export default function ContactSection() {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Số Điện Thoại</FormLabel>
+                          <FormLabel>{t('phone_number')}</FormLabel>
                           <FormControl>
                             <Input 
                               type="tel" 
-                              placeholder="Nhập số điện thoại của bạn" 
+                              placeholder={t('enter_phone')}
                               {...field}
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                             />
@@ -225,21 +242,21 @@ export default function ContactSection() {
                       name="subject"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Chủ Đề</FormLabel>
+                          <FormLabel>{t('subject')}</FormLabel>
                           <Select 
                             onValueChange={field.onChange} 
                             defaultValue={field.value}
                           >
                             <FormControl>
                               <SelectTrigger className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
-                                <SelectValue placeholder="Chọn chủ đề" />
+                                <SelectValue placeholder={t('select_subject')}/>
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="product">Thông tin sản phẩm</SelectItem>
-                              <SelectItem value="service">Dịch vụ tư vấn</SelectItem>
-                              <SelectItem value="support">Hỗ trợ kỹ thuật</SelectItem>
-                              <SelectItem value="other">Khác</SelectItem>
+                              <SelectItem value="product">{t('product_info')}</SelectItem>
+                              <SelectItem value="service">{t('consulting_service')}</SelectItem>
+                              <SelectItem value="support">{t('technical_support')}</SelectItem>
+                              <SelectItem value="other">{t('other')}</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -252,11 +269,11 @@ export default function ContactSection() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Nội Dung</FormLabel>
+                          <FormLabel>{t('content')}</FormLabel>
                           <FormControl>
                             <Textarea 
                               rows={5} 
-                              placeholder="Nhập nội dung yêu cầu của bạn" 
+                              placeholder={t('enter_message')}
                               {...field}
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                             />
@@ -271,7 +288,7 @@ export default function ContactSection() {
                       disabled={isSubmitting}
                       className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300"
                     >
-                      {isSubmitting ? "Đang gửi..." : "Gửi Yêu Cầu"}
+                      {isSubmitting ? t('send_request_small') : t('send_request')}
                     </Button>
                   </form>
                 </Form>

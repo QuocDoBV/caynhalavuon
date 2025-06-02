@@ -1,0 +1,11 @@
+{
+  "leave_phone": "Leave your phone number...",
+  "send": "SEND",
+  "please_enter_phone": "Please enter your phone number.",
+  "invalid_phone": "Invalid phone number",
+  "phone_requirements": "Please enter 10 digits starting with 0.",
+  "request_sent": "Request has been sent",
+  "we_will_contact": "We will contact you as soon as possible.",
+  "error_occurred": "An error occurred.",
+  "please_try_again": "Please try again later."
+}

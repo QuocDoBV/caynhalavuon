@@ -1,0 +1,20 @@
+{
+  "testimonial_title": "Khách Hàng Nói Gì Về Chúng Tôi",
+  "users": {
+    "name": {
+      "1": "Nguyễn Văn Vinh",
+      "2": "Trần Phú Quý",
+      "3": "Đỗ Văn Quốc"
+    },
+    "comment": {
+     "1": "Tôi đã sử dụng dịch vụ tư vấn kỹ thuật và chuyển giao công nghệ của CSF cho cơ sở sản xuất thực phẩm của mình. Đội ngũ chuyên gia rất chuyên nghiệp và tận tâm, giúp quy trình sản xuất được tối ưu hóa rõ rệt, chất lượng sản phẩm cũng được nâng cao đáng kể.",
+    "2": "Tôi đã sử dụng dịch vụ tư vấn và chuyển giao công nghệ của CSF cho doanh nghiệp sản xuất thực phẩm của mình. Đội ngũ chuyên gia rất chuyên nghiệp và am hiểu sâu sắc, giúp chúng tôi tối ưu hóa quy trình và nâng cao chất lượng sản phẩm. Sản phẩm sau khi áp dụng công nghệ mới đã được thị trường đón nhận rất tích cực.",
+    "3": "Công ty CSF đã giúp chúng tôi phát triển sản phẩm thực phẩm mới, từ việc nghiên cứu công thức đến thử nghiệm sản xuất. Chúng tôi rất ấn tượng với sự tận tâm và kinh nghiệm của đội ngũ chuyên gia. Đây là đối tác chiến lược quan trọng cho sự phát triển của chúng tôi."
+    },
+    "pos": {
+      "1": "Chủ hộ kinh doanh bánh tráng",
+      "2": "Doanh nghiệp Sản Xuất Hạt điều",
+      "3": "Hợp tác xã Nông nghiệp Sạch"
+    }
+  }
+}

@@ -1,0 +1,112 @@
+.chat-widget {
+  position: fixed;
+  bottom: 135px;
+  right: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.toggle-btn {
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.chat-icons {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.chat-btn {
+  margin-bottom: 10px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.chat-btn.rotate {
+  transform: rotate(45deg);
+}
+
+.chat-btn img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.phone-form {
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.phone-form input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.phone-form button {
+  padding: 5px 12px;
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.toggle-btn {
+  transition: transform 0.2s ease;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(40deg);
+  }
+
+  50% {
+    transform: rotate(-40deg);
+  }
+
+  75% {
+    transform: rotate(6deg);
+  }
+}
+
+.chat-btn.wiggle {
+  animation: wiggle 0.5s ease-in-out infinite;
+}
+
+.logo {
+  width: 90px;
+  height: auto;
+  object-fit: cover;
+  overflow: hidden;
+}

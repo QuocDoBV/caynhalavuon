@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 interface Testimonial {
   id: number;
@@ -10,15 +11,16 @@ interface Testimonial {
 }
 
 export default function TestimonialsSection() {
+  const { t} = useTranslation('testimonnialsSection');
   const { data: testimonials = [] } = useQuery<Testimonial[]>({
-    queryKey: ['/api/testimonials'],
+    queryKey: ['/api/testimonials/xxx'],
   });
 
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold font-heading text-gray-900 mb-4">Khách Hàng Nói Gì Về Chúng Tôi</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-heading text-gray-900 mb-4">{t('testimonial_title')}</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
         </div>
         
@@ -37,21 +39,21 @@ export default function TestimonialsSection() {
             // Fallback testimonials if API doesn't return data
             <>
               <TestimonialCard 
-                name="Nguyễn Văn A"
-                position="Chủ trang trại tại Lâm Đồng"
-                content="Tôi đã sử dụng dịch vụ tư vấn kỹ thuật của Cây Nhà Lá Vườn cho trang trại của mình. Các chuyên gia rất nhiệt tình và giàu kinh nghiệm, giúp năng suất của trang trại tăng đáng kể."
+                name={t('users.name.1')}
+                position={t('users.pos.1')}
+                content={t('users.comment.1')}
                 rating={5}
               />
               <TestimonialCard 
-                name="Trần Thị B"
-                position="Khách hàng tại TP.HCM"
-                content="Các sản phẩm nông sản của Cây Nhà Lá Vườn luôn tươi ngon và an toàn. Gia đình tôi rất an tâm khi sử dụng và sẽ tiếp tục ủng hộ công ty trong tương lai."
+                name={t('users.name.2')}
+                position={t('users.pos.2')}
+                content={t('users.comment.2')}
                 rating={5}
               />
               <TestimonialCard 
-                name="Lê Văn C"
-                position="Hợp tác xã Nông nghiệp Sạch"
-                content="Giống cây trồng của Cây Nhà Lá Vườn có tỷ lệ nảy mầm cao và sinh trưởng tốt. Đội ngũ hỗ trợ kỹ thuật luôn sẵn sàng giải đáp mọi thắc mắc của chúng tôi."
+                name={t('users.name.3')}
+                position={t('users.pos.3')}
+                content={t('users.comment.3')}
                 rating={4.5}
               />
             </>

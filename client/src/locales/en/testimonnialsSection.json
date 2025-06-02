@@ -1,0 +1,20 @@
+{
+  "testimonial_title": "What Our Customers Say About Us",
+  "users": {
+    "name": {
+      "1": "Nguyen Van Vinh",
+      "2": "Tran Phu Quy",
+      "3": "Do Van Quoc"
+    },
+    "comment": {
+      "1": "I used CSF's technical consulting and technology transfer services for my food production facility. The team of experts was highly professional and dedicated, helping significantly optimize the production process and improve product quality.",
+      "2": "I used CSF's consulting and technology transfer services for my food manufacturing business. The expert team was professional and deeply knowledgeable, helping us streamline processes and improve product quality. The new technology was very well received in the market.",
+      "3": "CSF helped us develop a new food product, from formula research to production testing. We were very impressed with the team's dedication and experience. They are a key strategic partner in our development."
+    },
+    "pos": {
+      "1": "Rice Paper Business Owner",
+      "2": "Cashew Processing Enterprise",
+      "3": "Clean Agriculture Cooperative"
+    }
+  }
+}

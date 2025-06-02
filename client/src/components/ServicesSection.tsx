@@ -1,23 +1,41 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { smoothScrollTo } from "@/lib/utils";
+import consultantImg from "@/imgs/consultant2.jpg";
+import teachTransfer from "@/imgs/teachTransfer.jpg";
+import r_d from "@/imgs/R_D1.jpg";
+import daoTaoWorkShop from "@/imgs/daoTaoWorkShop.jpg";
+import companyIntroduce from "@/imgs/companyIntroduce.jpg";
+import { useTranslation } from "react-i18next";
 
 export default function ServicesSection() {
+  const { t} = useTranslation('servicesSection');
+  const { t : tCommon} = useTranslation('common');
   const services = [
     {
-      title: "Cung Cấp Giống Cây Trồng",
-      description: "Cung cấp các loại giống cây trồng chất lượng cao, đảm bảo năng suất và khả năng chống chịu với điều kiện thời tiết khắc nghiệt.",
-      image: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500"
+      title: "technical_consulting_title",
+      description: "technical_consulting_desc",
+      image: consultantImg
     },
     {
-      title: "Tư Vấn Kỹ Thuật",
-      description: "Đội ngũ chuyên gia giàu kinh nghiệm của chúng tôi sẽ tư vấn, hỗ trợ kỹ thuật trong suốt quá trình canh tác.",
+      title: "food_safety_consulting_title",
+      description: "food_safety_consulting_desc",
       image: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500"
     },
     {
-      title: "Cung Cấp Nông Sản",
-      description: "Sản xuất và phân phối các loại nông sản sạch, an toàn theo tiêu chuẩn VietGAP và hữu cơ.",
-      image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500"
+      title: "rd_title",
+      description: "rd_desc",
+      image: r_d
+    },
+    {
+      title: "tech_transfer_title",
+      description: "tech_transfer_desc",
+      image: teachTransfer
+    },
+    {
+      title: "training_title",
+      description: "training_desc",
+      image: daoTaoWorkShop
     }
   ];
 
@@ -25,10 +43,10 @@ export default function ServicesSection() {
     <section id="services" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold font-heading text-gray-900 mb-4">Dịch Vụ Của Chúng Tôi</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-heading text-gray-900 mb-4">{t('our_services')}</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="max-w-3xl mx-auto text-lg text-gray-600">
-            Chúng tôi cung cấp đa dạng các sản phẩm và dịch vụ liên quan đến nông nghiệp, từ cung cấp giống cây trồng đến tư vấn kỹ thuật.
+            {t('our_services_desc')}
           </p>
         </div>
         
@@ -38,19 +56,15 @@ export default function ServicesSection() {
               <div className="w-full h-56 overflow-hidden">
                 <img 
                   src={service.image} 
-                  alt={service.title} 
+                  alt={t(service.title)} 
                   className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold font-heading text-gray-900 mb-3">{service.title}</h3>
+                <h3 className="text-xl font-bold font-heading text-gray-900 mb-3">{t(service.title)}</h3>
                 <p className="text-gray-600 mb-4">
-                  {service.description}
+                  {t(service.description)}
                 </p>
-                <a href="#" className="inline-flex items-center text-primary font-medium hover:text-primary-dark">
-                  Tìm hiểu thêm
-                  <i className="fas fa-arrow-right ml-2"></i>
-                </a>
               </CardContent>
             </Card>
           ))}
@@ -61,7 +75,7 @@ export default function ServicesSection() {
             className="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300"
             onClick={() => smoothScrollTo("contact")}
           >
-            Liên Hệ Tư Vấn
+            {tCommon('contactNow')}
           </Button>
         </div>
       </div>
